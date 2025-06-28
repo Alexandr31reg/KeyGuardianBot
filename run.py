@@ -6,15 +6,13 @@ from aiogram import Bot, Dispatcher
 from aiogram.types import Message
 from aiogram.filters import CommandStart
 
-dp = Dispatcher()
-
-@dp.message(CommandStart())
-async def cmd_start(message: Message):
-    await message.answer('Привет!')
+from app.handlers import router
 
 async def main():
     load_dotenv()
-    bot = Bot(token=os.getenv('TOKEN'))
+    bot = Bot(token=os.getenv('TOKEN')) # type: ignore
+    dp = Dispatcher()
+    dp.include_router(router)
     await dp.start_polling(bot)
 
 if __name__ == '__main__':
