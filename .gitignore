@@ -2,3 +2,5 @@
 .env
 systemd/
 __pycache__/
+*.db
+.DS_Store
